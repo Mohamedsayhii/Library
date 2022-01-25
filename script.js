@@ -2,19 +2,20 @@ const booksGrid = document.querySelector(".books-grid");
 const modalBg = document.querySelector(".modal-bg");
 const addBookBtn = document.querySelector(".addBook-btn");
 const exitBtn = document.querySelector(".exit-btn");
+const modalBtn = document.querySelector(".modal-btn");
 
 let myLibrary = [
   {
     title: "Rework",
     author: "Fuck this",
     pages: "200",
-    read: "Yes",
+    read: "Read",
   },
   {
     title: "Aaed ila Haifa",
     author: "Ghassan Kanafani",
     pages: "200",
-    read: "Yes",
+    read: "Not Read",
   },
 ];
 
@@ -30,12 +31,17 @@ function addBookToLibrary() {
   // do stuff here
   // taking the user input and storing it
   const newBook = new Book(
-    prompt("Title"),
-    prompt("Author"),
-    prompt("Pages"),
-    prompt("Read")
+    document.getElementById("titleInput").value,
+    document.getElementById("authorInput").value,
+    document.getElementById("pagesInput").value,
+    "Read"
   );
+
+  document.getElementById("titleInput").value = "";
+  document.getElementById("authorInput").value = "";
+  document.getElementById("pagesInput").value = "";
   myLibrary.push(newBook);
+  closeModal();
   displayBooks(newBook);
 }
 
@@ -69,7 +75,11 @@ addBookBtn.addEventListener("click", function () {
   modalBg.style.opacity = 1;
 });
 
-exitBtn.addEventListener("click", function () {
+closeModal = function () {
   modalBg.style.visibility = "hidden";
   modalBg.style.opacity = 0;
-});
+};
+
+exitBtn.addEventListener("click", closeModal);
+
+modalBtn.addEventListener("click", addBookToLibrary);

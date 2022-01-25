@@ -184,7 +184,7 @@ footer {
   align-items: center;
 }
 
-.modal button {
+.modal-btn {
   font-family: inherit;
   font-size: 30px;
   font-weight: bold;
@@ -194,10 +194,18 @@ footer {
   background-color: var(--btn-green);
 }
 
+.modal-btn:hover {
+  background-color: var(--btn-green-hover);
+}
+
+.modal-btn:active {
+  background-color: var(--btn-green-active);
+}
+
 .exit-btn {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 0px;
+  right: 10px;
   font-weight: bold;
   cursor: pointer;
 }
