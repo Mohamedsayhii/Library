@@ -1,23 +1,11 @@
 const booksGrid = document.querySelector(".books-grid");
+const books = booksGrid.childNodes;
 const modalBg = document.querySelector(".modal-bg");
 const addBookBtn = document.querySelector(".addBook-btn");
 const exitBtn = document.querySelector(".exit-btn");
 const modalBtn = document.querySelector(".modal-btn");
 
-let myLibrary = [
-  {
-    title: "Rework",
-    author: "Fuck this",
-    pages: "200",
-    read: "Read",
-  },
-  {
-    title: "Aaed ila Haifa",
-    author: "Ghassan Kanafani",
-    pages: "200",
-    read: "Not Read",
-  },
-];
+let myLibrary = [];
 
 function Book(title, author, pages, read) {
   // the constructor
@@ -45,8 +33,6 @@ function addBookToLibrary() {
   displayBooks(newBook);
 }
 
-myLibrary.map(displayBooks);
-
 function displayBooks(book) {
   const bookCard = document.createElement("div");
 
@@ -54,6 +40,7 @@ function displayBooks(book) {
   const author = document.createElement("h3");
   const pages = document.createElement("h3");
   const read = document.createElement("h3");
+  const removeBtn = document.createElement("button");
 
   bookCard.classList.add("book-card");
   title.textContent = book.title;
@@ -61,13 +48,19 @@ function displayBooks(book) {
   pages.textContent = book.pages;
   read.textContent = book.read;
 
+  removeBtn.classList.add("removebook-btn");
+  removeBtn.textContent = "Remove";
+
   bookCard.appendChild(title);
   bookCard.appendChild(author);
   bookCard.appendChild(pages);
   bookCard.appendChild(read);
+  bookCard.appendChild(removeBtn);
 
   booksGrid.appendChild(bookCard);
 }
+
+myLibrary.map(displayBooks);
 
 //the modal part
 addBookBtn.addEventListener("click", function () {
@@ -80,6 +73,27 @@ closeModal = function () {
   modalBg.style.opacity = 0;
 };
 
+const removeBook = (e) => {
+  for (let i = 0; i < myLibrary.length; i++) {
+    myLibrary.splice(i, e);
+  }
+  displayBooks();
+};
 exitBtn.addEventListener("click", closeModal);
 
 modalBtn.addEventListener("click", addBookToLibrary);
+
+window.addEventListener("click", removeBookFromLibrary);
+
+function removeBookFromLibrary(e) {
+  if (e.target.classList.contains("removebook-btn")) {
+    let bookTitle = e.target.parentNode.firstChild.textContent;
+    console.log(e.target.parentNode);
+    for (var i = 0; i < myLibrary.length; i++) {
+      if (myLibrary[i].title === bookTitle) {
+        myLibrary.splice(i, 1);
+        e.target.parentNode.remove();
+      }
+    }
+  }
+}

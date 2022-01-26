@@ -1,6 +1,5 @@
 :root {
   --body: #f1f3f8;
-  --font: #393b44;
   --border: #666;
   --header: #d6e0f0;
   --title-font: #282a33;
@@ -31,7 +30,6 @@
 
 body {
   background-color: var(--body);
-  color: var(--font);
   font-family: "Oswald", sans-serif;
   font-size: 30px;
   line-height: 1.6;
@@ -103,6 +101,24 @@ main {
 
 .addBook-btn:hover {
   background-color: var(--btn-green-hover);
+}
+
+.removebook-btn {
+  padding: 10px;
+  border: 2px solid var(--border);
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: inherit;
+  transition: transform 0.15s ease-in-out;
+  background-color: var(--btn-red);
+}
+
+.removebook-btn:active {
+  background-color: var(--btn-red-active);
+}
+
+.removebook-btn:hover {
+  background-color: var(--btn-red-hover);
 }
 
 @media (max-width: 800px) {
