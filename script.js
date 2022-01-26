@@ -22,7 +22,9 @@ function addBookToLibrary() {
     document.getElementById("titleInput").value,
     document.getElementById("authorInput").value,
     document.getElementById("pagesInput").value,
-    "Read"
+    document.querySelector('input[name="read"]:checked').value == "Yes"
+      ? "Read"
+      : "Not read"
   );
 
   document.getElementById("titleInput").value = "";
@@ -39,14 +41,31 @@ function displayBooks(book) {
   const title = document.createElement("h3");
   const author = document.createElement("h3");
   const pages = document.createElement("h3");
-  const read = document.createElement("h3");
+  const readBtn = document.createElement("button");
   const removeBtn = document.createElement("button");
 
   bookCard.classList.add("book-card");
   title.textContent = book.title;
   author.textContent = book.author;
   pages.textContent = book.pages;
-  read.textContent = book.read;
+  readBtn.textContent = book.read;
+
+  readBtn.textContent == "Read"
+    ? readBtn.classList.add("did-readbook")
+    : readBtn.classList.add("didnot-readbook");
+
+  readBtn.classList.add("readbook-btn");
+  readBtn.onclick = function () {
+    if (readBtn.textContent == "Read") {
+      readBtn.textContent = "Not read";
+      readBtn.classList.add("didnot-readbook");
+      readBtn.classList.remove("did-readbook");
+    } else {
+      readBtn.textContent = "Read";
+      readBtn.classList.add("did-readbook");
+      readBtn.classList.remove("didnot-readbook");
+    }
+  };
 
   removeBtn.classList.add("removebook-btn");
   removeBtn.textContent = "Remove";
@@ -54,7 +73,7 @@ function displayBooks(book) {
   bookCard.appendChild(title);
   bookCard.appendChild(author);
   bookCard.appendChild(pages);
-  bookCard.appendChild(read);
+  bookCard.appendChild(readBtn);
   bookCard.appendChild(removeBtn);
 
   booksGrid.appendChild(bookCard);

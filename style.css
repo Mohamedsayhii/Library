@@ -103,6 +103,39 @@ main {
   background-color: var(--btn-green-hover);
 }
 
+.readbook-btn {
+  padding: 10px;
+  border: 2px solid var(--border);
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: inherit;
+  transition: transform 0.15s ease-in-out;
+}
+
+.did-readbook {
+  background-color: var(--btn-light-green);
+}
+
+.did-readbook:active {
+  background-color: var(--btn-light-green-active);
+}
+
+.did-readbook:hover {
+  background-color: var(--btn-light-green-hover);
+}
+
+.didnot-readbook {
+  background-color: var(--btn-light-red);
+}
+
+.didnot-readbook:active {
+  background-color: var(--btn-light-red-active);
+}
+
+.didnot-readbook:hover {
+  background-color: var(--btn-light-red-hover);
+}
+
 .removebook-btn {
   padding: 10px;
   border: 2px solid var(--border);
@@ -130,14 +163,14 @@ main {
 .books-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 40px;
+  grid-gap: 25px;
   margin-top: 40px;
 }
 
 .book-card {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 15px;
   padding: 30px;
   border: 2px solid var(--border);
   border-radius: 5px;
@@ -193,7 +226,7 @@ footer {
   justify-content: space-around;
 }
 
-.read {
+#read {
   display: flex;
   justify-content: center;
   gap: 10px;
